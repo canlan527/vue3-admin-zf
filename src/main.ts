@@ -1,9 +1,12 @@
 import { createApp } from 'vue'
-import './style.css'
 import router from './router'
 import { createPinia } from 'pinia'
 import ElementPlus from 'element-plus'
+import 'normalize.css'
 import 'element-plus/dist/index.css'
+import 'virtual:uno.css'
+import '@/assets/styles/index.scss'
+
 import App from './App.vue'
 
 const app = createApp(App)
