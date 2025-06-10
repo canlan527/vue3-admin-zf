@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 @click="counterStore.increment">点击</h2>
+    <el-button type="primary" @click="counterStore.increment">点击</el-button>
     {{ counterStore.count }}
   </div>
 </template>
