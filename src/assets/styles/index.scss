@@ -1,8 +1,8 @@
-@import './variables.module.scss';
+@use './variables.module.scss' as vars;
 
 :root {
-  --sidebar-width: #{$sideBarWidth};
-  --navbar-height: #{$navBarHeight};
-  --header-height: #{$headerHeight};
-  --tagsview-height: #{$tagsViewHeight};
+  --sidebar-width: #{vars.$sideBarWidth};
+  --navbar-height: #{vars.$navBarHeight};
+  --header-height: #{vars.$headerHeight};
+  --tagsview-height: #{vars.$tagsViewHeight};
 }
