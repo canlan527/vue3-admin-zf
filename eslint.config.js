@@ -4,6 +4,9 @@ import tseslint from 'typescript-eslint'
 import pluginVue from 'eslint-plugin-vue'
 import { defineConfig } from 'eslint/config'
 import prettierRecommended from 'eslint-plugin-prettier/recommended'
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
+const autoImport = require('./.eslintrc-auto-import.json')
 
 export default defineConfig([
   {
@@ -13,7 +16,9 @@ export default defineConfig([
   },
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,vue}'],
-    languageOptions: { globals: { ...globals.browser, ...globals.node } }
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.node, ...autoImport.globals }
+    }
   },
   tseslint.configs.recommended,
   pluginVue.configs['flat/essential'],
