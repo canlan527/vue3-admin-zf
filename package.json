@@ -16,6 +16,7 @@
     "normalize.css": "^8.0.1",
     "pinia": "^3.0.3",
     "pnpm": "^10.11.1",
+    "unplugin-element-plus": "^0.10.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.1"
   },
