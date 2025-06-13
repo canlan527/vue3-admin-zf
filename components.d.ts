@@ -11,10 +11,16 @@ declare module 'vue' {
     App: typeof import('./src/App.vue')['default']
     Dashboard: typeof import('./src/views/dashboard/index.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElMenu: typeof import('element-plus/es')['ElMenu']
+    ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    Hamburger: typeof import('./src/layouts/components/Hamburger/index.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Layouts: typeof import('./src/layouts/index.vue')['default']
+    Navbar: typeof import('./src/layouts/components/Navbar/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Sidebar: typeof import('./src/layouts/components/Sidebar/index.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
   }
 }

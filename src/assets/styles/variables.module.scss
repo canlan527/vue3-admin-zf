@@ -2,3 +2,13 @@ $sideBarWidth: 210px;
 $navBarHeight: 50px;
 $headerHeight: 84px;
 $tagsViewHeight: 34px;
+
+$menuText: #bfcbd9;
+$menuActiveText: #409eff;
+$menuBg: #304156;
+
+:export {
+  menuText: $menuText;
+  menuActiveText: $menuActiveText;
+  menuBg: $menuBg;
+}
