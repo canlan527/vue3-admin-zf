@@ -18,7 +18,7 @@ import { isHttpLink } from '@/utils/validate'
 const { iconName, customClass, multiColor } = withDefaults(
   defineProps<{
     iconName: string
-    customClass: string
+    customClass?: string
     multiColor?: boolean
   }>(),
   {
