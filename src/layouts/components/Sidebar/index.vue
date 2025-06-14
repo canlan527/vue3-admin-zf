@@ -6,7 +6,7 @@
     :background-color="variables.menuBg"
     :text-color="variables.menuText"
     :active-text-color="variables.menuActiveText"
-    :collapse="false"
+    :collapse="store.sidebar.opened"
   >
     <el-menu-item index="/dashboard">
       <el-icon><setting /></el-icon>
@@ -17,8 +17,10 @@
 
 <script setup lang="ts">
 import variables from '@/assets/styles/variables.module.scss'
+import { useAppstore } from '@/stores/app'
 
 const route = useRoute()
+const store = useAppstore()
 
 const defaultActive = computed(() => {
   return route.path
