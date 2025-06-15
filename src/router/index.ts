@@ -8,7 +8,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     redirect: '/dashboard',
     children: [
       {
-        path: '/dashboard',
+        path: 'dashboard',
         name: 'Dashboard',
         component: () => import('@/views/dashboard/index.vue'),
         meta: {
@@ -27,7 +27,7 @@ const asyncRoutes: RouteRecordRaw[] = [
     redirect: '/documentation/index',
     children: [
       {
-        path: '/index',
+        path: 'index',
         name: 'Documentation',
         component: () => import('@/views/documentation/index.vue'),
         meta: {
@@ -43,7 +43,7 @@ const asyncRoutes: RouteRecordRaw[] = [
     redirect: '/guide/index',
     children: [
       {
-        path: '/index',
+        path: 'index',
         name: 'guide',
         component: () => import('@/views/guide/index.vue'),
         meta: {
@@ -63,7 +63,7 @@ const asyncRoutes: RouteRecordRaw[] = [
     },
     children: [
       {
-        path: '/menu',
+        path: 'menu',
         name: 'menu',
         component: () => import('@/views/system/menu.vue'),
         meta: {
@@ -72,7 +72,7 @@ const asyncRoutes: RouteRecordRaw[] = [
         }
       },
       {
-        path: '/role',
+        path: 'role',
         name: 'role',
         component: () => import('@/views/system/role.vue'),
         meta: {

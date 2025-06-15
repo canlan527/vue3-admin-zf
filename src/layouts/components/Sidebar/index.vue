@@ -12,6 +12,7 @@
       v-for="route in routes"
       :key="route.path"
       :item="route"
+      :base-path="route.path"
     ></SidebarItem>
   </el-menu>
 </template>
