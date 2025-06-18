@@ -1,16 +1,19 @@
 <template>
   <template v-if="!item.meta?.hidden">
-    <el-menu-item
+    <sidebar-item-link
       v-if="filteredChildren.length <= 1"
-      :index="resolvePath(singleChildRoute.path)"
+      :to="resolvePath(singleChildRoute.path)"
     >
-      <el-icon v-if="iconName">
-        <svg-icon :icon-name="iconName" />
-      </el-icon>
-      <template #title>
-        {{ singleChildRoute.meta?.title }}
-      </template>
-    </el-menu-item>
+      <el-menu-item :index="resolvePath(singleChildRoute.path)">
+        <el-icon v-if="iconName">
+          <svg-icon :icon-name="iconName" />
+        </el-icon>
+        <template #title>
+          {{ singleChildRoute.meta?.title }}
+        </template>
+      </el-menu-item>
+    </sidebar-item-link>
+
     <el-sub-menu v-else :index="item.path">
       <template #title>
         <el-icon v-if="iconName">
@@ -32,6 +35,7 @@
 <script setup lang="ts">
 import type { RouteRecordRaw } from 'vue-router'
 import path from 'path-browserify'
+import { isHttpLink } from '@/utils/validate'
 
 const { item, basePath } = defineProps<{
   item: RouteRecordRaw
@@ -56,7 +60,13 @@ const singleChildRoute = computed(() =>
 const iconName = computed(() => singleChildRoute.value.meta?.icon)
 
 // 解析和并且path路径
-const resolvePath = (childPath: string) => path.resolve(basePath, childPath)
+const resolvePath = (childPath: string) => {
+  // 如果是外联直接返回路径，不做拼接操作
+  if (isHttpLink(childPath)) {
+    return childPath
+  }
+  return path.resolve(basePath, childPath)
+}
 </script>
 
 <style scoped></style>

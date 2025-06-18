@@ -22,7 +22,9 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Sidebar: typeof import('./src/layouts/components/Sidebar/index.vue')['default']
+    SidebarExt: typeof import('./src/layouts/components/Sidebar/SidebarItemLink.vue')['default']
     SidebarItem: typeof import('./src/layouts/components/Sidebar/SidebarItem.vue')['default']
+    SidebarItemLink: typeof import('./src/layouts/components/Sidebar/SidebarItemLink.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
   }
 }

@@ -75,8 +75,7 @@ const asyncRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/system/menu.vue'),
         meta: {
           icon: 'ant-design:appstore-filled',
-          title: 'Menu Management',
-          hidden: true
+          title: 'Menu Management'
         }
       },
       {
@@ -85,8 +84,7 @@ const asyncRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/system/role.vue'),
         meta: {
           icon: 'material-symbols:manage-accounts',
-          title: 'Role Management',
-          hidden: true
+          title: 'Role Management'
         }
       },
       {
@@ -95,8 +93,21 @@ const asyncRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/system/user.vue'),
         meta: {
           icon: 'material-symbols:account-circle',
-          title: 'User Management',
-          hidden: true
+          title: 'User Management'
+        }
+      }
+    ]
+  },
+  {
+    path: '/external-link',
+    component: Layout,
+    children: [
+      {
+        path: 'https://chatgpt.com/',
+        redirect: '/',
+        meta: {
+          title: 'link gpt',
+          icon: 'mdi:link-variant'
         }
       }
     ]

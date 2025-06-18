@@ -7,3 +7,7 @@
   --tagsview-height: #{vars.$tagsViewHeight};
   --menu-bg: #{vars.$menuBg};
 }
+
+a {
+  @apply decoration-none active:(decoration-none) hover:(decoration-none);
+}

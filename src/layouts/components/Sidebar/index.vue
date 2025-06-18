@@ -1,7 +1,6 @@
 <template>
   <el-menu
     class="sidebar-container-menu"
-    router
     :default-active="defaultActive"
     :background-color="variables.menuBg"
     :text-color="variables.menuText"
