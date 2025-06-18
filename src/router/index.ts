@@ -66,7 +66,8 @@ const asyncRoutes: RouteRecordRaw[] = [
     redirect: '/system/menu',
     meta: {
       icon: 'material-symbols:settings-account-box',
-      title: 'System'
+      title: 'System',
+      alwaysShow: true // 作为父文件夹一直显示
     },
     children: [
       {
@@ -84,7 +85,8 @@ const asyncRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/system/role.vue'),
         meta: {
           icon: 'material-symbols:manage-accounts',
-          title: 'Role Management'
+          title: 'Role Management',
+          hidden: true
         }
       },
       {
@@ -93,7 +95,8 @@ const asyncRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/system/user.vue'),
         meta: {
           icon: 'material-symbols:account-circle',
-          title: 'User Management'
+          title: 'User Management',
+          hidden: true
         }
       }
     ]

@@ -1,7 +1,7 @@
 <template>
   <template v-if="!item.meta?.hidden">
     <sidebar-item-link
-      v-if="filteredChildren.length <= 1"
+      v-if="filteredChildren.length <= 1 && !item.meta?.alwaysShow"
       :to="resolvePath(singleChildRoute.path)"
     >
       <el-menu-item :index="resolvePath(singleChildRoute.path)">
@@ -19,7 +19,7 @@
         <el-icon v-if="iconName">
           <svg-icon :icon-name="iconName" />
         </el-icon>
-        <span>{{ singleChildRoute.meta?.title }}</span>
+        <span>{{ item.meta?.title }}</span>
       </template>
       <SidebarItem
         v-for="child of filteredChildren"
