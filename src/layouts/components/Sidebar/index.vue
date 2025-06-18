@@ -7,6 +7,7 @@
     :text-color="variables.menuText"
     :active-text-color="variables.menuActiveText"
     :collapse="store.sidebar.opened"
+    border-none
   >
     <SidebarItem
       v-for="route in routes"
