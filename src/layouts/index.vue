@@ -8,9 +8,8 @@
         <navbar></navbar>
         <div class="tags-view">导航条-2</div>
       </div>
-      <div class="app-main">
-        <router-view />
-      </div>
+      <!-- 核心渲染部分 -->
+      <app-main></app-main>
     </div>
   </div>
 </template>
@@ -42,10 +41,6 @@
       .tags-view {
         @apply h-[var(--tagsview-height)] bg-blue;
       }
-    }
-
-    .app-main {
-      @apply bg-cyan h-[calc(100vh-var(--header-height))];
     }
   }
 }

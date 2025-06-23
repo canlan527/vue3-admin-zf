@@ -32,6 +32,7 @@
       custom-class="text-blue-100 h-2em w-2em bg-red"
       @click="handle"
     ></svg-icon>
+    <input type="text" />
   </div>
 </template>
 
