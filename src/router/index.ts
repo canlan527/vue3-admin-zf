@@ -68,6 +68,7 @@ const asyncRoutes: RouteRecordRaw[] = [
       icon: 'material-symbols:settings-account-box',
       title: 'System',
       alwaysShow: true // 作为父文件夹一直显示
+      // breadcrumb: false
     },
     children: [
       {
