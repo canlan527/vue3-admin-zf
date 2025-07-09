@@ -16,6 +16,7 @@
     "element-plus": "^2.10.1",
     "normalize.css": "^8.0.1",
     "path-browserify": "^1.0.1",
+    "path-to-regexp": "^8.2.0",
     "pinia": "^3.0.3",
     "pinia-plugin-persistedstate": "^4.3.0",
     "pnpm": "^10.11.1",

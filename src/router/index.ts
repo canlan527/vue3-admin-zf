@@ -45,6 +45,21 @@ const asyncRoutes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: '/test',
+    component: Layout,
+    children: [
+      {
+        path: 'index/:id',
+        name: 'Test',
+        component: () => import('@/views/test/index.vue'),
+        meta: {
+          icon: 'ant-design:container-filled',
+          title: 'Test'
+        }
+      }
+    ]
+  },
+  {
     path: '/guide',
     component: Layout,
     redirect: '/guide/index',
