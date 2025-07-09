@@ -19,7 +19,7 @@ declare module 'vue' {
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
-    Hamburger: typeof import('./src/layouts/components/Hamburger/index.vue')['default']
+    Hamburger: typeof import('./src/components/Hamburger/index.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Layouts: typeof import('./src/layouts/index.vue')['default']
     Navbar: typeof import('./src/layouts/components/Navbar/index.vue')['default']
