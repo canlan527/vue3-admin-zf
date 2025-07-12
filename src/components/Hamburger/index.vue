@@ -7,7 +7,6 @@
       :class="{ 'rotate-180': collapse }"
     ></svg-icon>
   </div>
-  <breadcrumb></breadcrumb>
 </template>
 
 <script setup lang="ts">
