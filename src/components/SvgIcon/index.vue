@@ -1,13 +1,13 @@
 <template>
   <Icon v-if="!isHL" :icon="iconName" :class="svgClass" v-bind="$attrs" />
   <div
-    v-else-if="isHL && !multiColor"
+    v-else-if="isHL && !props.multiColor"
     :style="styleHttpLKIcon"
     :class="customClass"
     v-bind="$attrs"
     bg-current
   ></div>
-  <div v-if="multiColor" :class="customClass" v-bind="$attrs">
+  <div v-if="props.multiColor" :class="customClass" v-bind="$attrs">
     <img :src="iconName" alt="iconName" />
   </div>
 </template>
@@ -15,23 +15,21 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { isHttpLink } from '@/utils/validate'
-const { iconName, customClass, multiColor } = withDefaults(
-  defineProps<{
-    iconName: string
-    customClass?: string
-    multiColor?: boolean
-  }>(),
-  {
-    customClass: ''
-  }
-)
-const isHL = computed(() => isHttpLink(iconName))
+const props = defineProps<{
+  iconName: string
+  customClass?: string
+  multiColor?: boolean
+}>()
 
-const svgClass = computed(() => (customClass ? `icon ${customClass}` : 'icon'))
+const isHL = computed(() => isHttpLink(props.iconName))
+
+const svgClass = computed(() =>
+  props.customClass ? `icon ${props.customClass}` : 'icon'
+)
 
 const styleHttpLKIcon = computed(() => ({
-  mask: `url(${iconName}) no-repeat 50% 50%`,
-  '-webkt-mask': `url(${iconName}) no-repeat 50% 50%`,
+  mask: `url(${props.iconName}) no-repeat 50% 50%`,
+  '-webkt-mask': `url(${props.iconName}) no-repeat 50% 50%`,
   'mask-size': 'cover'
 }))
 </script>
