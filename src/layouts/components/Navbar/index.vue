@@ -5,6 +5,16 @@
     <div flex justify-end flex-1 items-center>
       <screenfull></screenfull>
     </div>
+    <div flex items-center mx-3>
+      <el-tooltip
+        class="box-item"
+        effect="dark"
+        content="选择组件大小"
+        placement="left"
+      >
+        <size-select></size-select>
+      </el-tooltip>
+    </div>
   </div>
 </template>
 
