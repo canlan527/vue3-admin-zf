@@ -10,6 +10,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     App: typeof import('./src/App.vue')['default']
     AppMain: typeof import('./src/layouts/components/AppMain/index.vue')['default']
+    Avatar: typeof import('./src/components/Avatar/index.vue')['default']
     Breadcrumb: typeof import('./src/layouts/components/Breadcrumb/index.vue')['default']
     Dashboard: typeof import('./src/views/dashboard/index.vue')['default']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']

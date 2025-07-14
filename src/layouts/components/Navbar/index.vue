@@ -14,6 +14,7 @@
       >
         <size-select></size-select>
       </el-tooltip>
+      <avatar />
     </div>
   </div>
 </template>
