@@ -6,7 +6,7 @@
     <div class="main-container">
       <div class="header">
         <navbar></navbar>
-        <div class="tags-view">导航条-2</div>
+        <tags-view />
       </div>
       <!-- 核心渲染部分 -->
       <app-main></app-main>
@@ -37,10 +37,6 @@
       /* .navbar {
         @apply h-[var(--navbar-height)] bg-amber;
       } */
-
-      .tags-view {
-        @apply h-[var(--tagsview-height)] bg-blue;
-      }
     }
   }
 }
