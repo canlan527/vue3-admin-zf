@@ -5,16 +5,25 @@
     </div>
     <div class="main-container">
       <div class="header">
-        <navbar></navbar>
+        <navbar @open-setting="showSetting"></navbar>
         <tags-view />
       </div>
       <!-- 核心渲染部分 -->
       <app-main></app-main>
     </div>
+    <!-- 抽屉组件，根据 navbar的内容来切换 -->
+    <right-panel v-model="setting" title="设置主题色">
+      <settings />
+    </right-panel>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const setting = ref(false)
+const showSetting = () => {
+  setting.value = true
+}
+</script>
 
 <style lang="scss" scoped>
 .app-wrapper {

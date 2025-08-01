@@ -14,6 +14,13 @@
       >
         <size-select></size-select>
       </el-tooltip>
+      <!-- 设置主题颜色 -->
+      <svg-icon
+        icon-name="mdi:cog-outline"
+        size-2em
+        @click="handleClick"
+      ></svg-icon>
+      <!-- 用户头像 -->
       <avatar />
     </div>
   </div>
@@ -23,6 +30,14 @@
 import { useAppstore } from '@/stores/app'
 // 在解构的时候，要考虑值是不是对象，如果非对象的值解构出来会丧失响应式，可以使用storeToRef包装
 const { sidebar, toggleSidebar } = useAppstore()
+
+const emit = defineEmits<{
+  (event: 'openSetting', setting: boolean): void
+}>()
+
+const handleClick = () => {
+  emit('openSetting', true)
+}
 </script>
 
 <style scoped lang="scss">

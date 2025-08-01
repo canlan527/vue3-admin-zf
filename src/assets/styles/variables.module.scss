@@ -6,9 +6,11 @@ $tagsViewHeight: 34px;
 $menuText: #bfcbd9;
 $menuActiveText: #409eff;
 $menuBg: #304156;
+$theme: #409eff;
 
 :export {
   menuText: $menuText;
   menuActiveText: $menuActiveText;
   menuBg: $menuBg;
+  theme: $theme;
 }
