@@ -39,6 +39,10 @@
 </template>
 
 <script setup lang="ts">
+// 需要缓存的组件中需要定义 name 属性，这样 include 才能正常工作:
+defineOptions({
+  name: 'dashboard'
+})
 const handle = () => {
   console.log('svg-icon')
 }

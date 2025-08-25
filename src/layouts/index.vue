@@ -42,7 +42,6 @@ const showSetting = () => {
 
     .header {
       @apply h-[var(--header-height)];
-
       /* .navbar {
         @apply h-[var(--navbar-height)] bg-amber;
       } */

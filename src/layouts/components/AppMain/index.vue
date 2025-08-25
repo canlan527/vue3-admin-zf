@@ -2,13 +2,20 @@
   <div class="app-main">
     <router-view v-slot="{ Component }">
       <transition name="fade">
-        <keep-alive>
-          <component :is="Component"></component>
+        <keep-alive :include="includes">
+          <component :is="Component" :key="$route.path"></component>
         </keep-alive>
       </transition>
     </router-view>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useTagsView } from '@/stores/tagsView'
+
+const store = useTagsView()
+const includes = computed(() => store.cachedViews as string[])
+</script>
 
 <style lang="scss" scoped>
 .app-main {

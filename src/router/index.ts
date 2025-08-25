@@ -13,11 +13,34 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/dashboard/index.vue'),
         meta: {
           icon: 'ant-design:dashboard-filled',
-          title: 'Dashboard'
+          title: 'Dashboard',
+          affix: true, // 固定在标签栏tagsView上
+          noCache: true // 不要缓存
         }
       }
     ]
+  },
+  {
+    //当跳转到/redirect/a/b/c/d?query=1
+    path: '/redirect/:path(.*)',
+    component: () => import('@/views/redirect/index.vue'),
+    meta: { hidden: true }
   }
+  // {
+  //   path: '/redirect',
+  //   component: Layout,
+  //   meta: {
+  //     hidden: true
+  //   },
+  //   // 当跳转到/redirect/a/b/c/d?query=1
+  //   children: [
+  //     {
+  //       // path: '/redirect/:path(.*)',
+  //       path: ':path(.*)',
+  //       component: () => import('@/views/redirect/index.vue')
+  //     }
+  //   ]
+  // }
 ]
 
 const asyncRoutes: RouteRecordRaw[] = [
@@ -66,7 +89,7 @@ const asyncRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: 'index',
-        name: 'guide',
+        name: 'Guide',
         component: () => import('@/views/guide/index.vue'),
         meta: {
           icon: 'ant-design:box-plot-filled',
@@ -88,7 +111,7 @@ const asyncRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: 'menu',
-        name: 'menu',
+        name: 'System_menu',
         component: () => import('@/views/system/menu.vue'),
         meta: {
           icon: 'ant-design:appstore-filled',
@@ -97,7 +120,7 @@ const asyncRoutes: RouteRecordRaw[] = [
       },
       {
         path: 'role',
-        name: 'role',
+        name: 'System_role',
         component: () => import('@/views/system/role.vue'),
         meta: {
           icon: 'material-symbols:manage-accounts',
@@ -107,7 +130,7 @@ const asyncRoutes: RouteRecordRaw[] = [
       },
       {
         path: 'user',
-        name: 'user',
+        name: 'System_user',
         component: () => import('@/views/system/user.vue'),
         meta: {
           icon: 'material-symbols:account-circle',
