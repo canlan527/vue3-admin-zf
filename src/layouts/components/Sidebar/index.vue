@@ -4,7 +4,7 @@
     :default-active="defaultActive"
     :background-color="variables.menuBg"
     :text-color="variables.menuText"
-    :active-text-color="variables.menuActiveText"
+    :active-text-color="theme"
     :collapse="store.sidebar.opened"
     border-none
   >
@@ -21,6 +21,7 @@
 import variables from '@/assets/styles/variables.module.scss'
 import { useAppstore } from '@/stores/app'
 import { routes } from '@/router'
+import { useSettingStore } from '@/stores/settings'
 
 const route = useRoute()
 const store = useAppstore()
@@ -28,6 +29,9 @@ const store = useAppstore()
 const defaultActive = computed(() => {
   return route.path
 })
+
+const settingStore = useSettingStore()
+const theme = computed(() => settingStore.setting.theme)
 </script>
 
 <style scoped></style>

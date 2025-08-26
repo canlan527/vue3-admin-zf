@@ -6,7 +6,8 @@ export const useSettingStore = defineStore(
   () => {
     const setting = reactive({
       theme: variables.theme,
-      originTheme: ''
+      originTheme: '',
+      showTagsView: true
     })
 
     type ISetting = typeof setting
@@ -26,7 +27,7 @@ export const useSettingStore = defineStore(
   {
     persist: {
       storage: sessionStorage,
-      pick: ['setting.theme']
+      pick: ['setting.theme', 'setting.showTagsView']
     }
   }
 )

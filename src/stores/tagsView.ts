@@ -41,13 +41,10 @@ export const useTagsView = defineStore('tagsView', () => {
     //   cachedViews.value.splice(index, 1)
     // }
     const viewName = view.name as string
-    console.log(viewName)
     const index = cachedViews.value.indexOf(viewName)
-    console.log(index)
     if (index > -1) {
       cachedViews.value.splice(index, 1)
     }
-    console.log(cachedViews.value)
   }
   // 删除所有非固定视图，并清空缓存视图列表
   const delAllView = () => {

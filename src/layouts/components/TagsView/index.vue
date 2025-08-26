@@ -6,6 +6,11 @@
         v-for="(tag, index) in visitedViews"
         :key="index"
         :to="{ path: tag.path, query: tag.query }"
+        :class="{ active: isActive(tag) }"
+        :style="{
+          backgroundColor: isActive(tag) ? theme : '',
+          borderColor: isActive(tag) ? theme : ''
+        }"
       >
         <el-dropdown
           placement="top-start"
@@ -43,6 +48,7 @@ import { useTagsView } from '@/stores/tagsView'
 import { join } from 'path-browserify'
 import { routes } from '@/router'
 import type { RouteLocationNormalizedGeneric, RouteRecordRaw } from 'vue-router'
+import { useSettingStore } from '@/stores/settings'
 
 const store = useTagsView()
 const { deleteView, addView, delAllView, deleteOtherView, deleteCachedView } =
@@ -153,6 +159,10 @@ const handleCommand = (
       break
     case CommandType.Other:
       deleteOtherView(view)
+      if (!isActive(view)) {
+        router.push(view.path)
+      }
+
       break
     case CommandType.Self:
       closeSelectedTag(view)
@@ -166,6 +176,9 @@ const handleCommand = (
       break
   }
 }
+
+const settingStore = useSettingStore()
+const theme = computed(() => settingStore.setting.theme)
 </script>
 
 <style lang="scss" scoped>
@@ -177,7 +190,7 @@ const handleCommand = (
       @apply text-dark-3;
     }
     &.active {
-      @apply text-white border-none bg-green;
+      @apply text-white border-none;
       &::before {
         content: '';
         @apply inline-block w-8px h-8px rounded-full bg-white mr-3px;
