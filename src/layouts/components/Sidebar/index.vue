@@ -1,4 +1,5 @@
 <template>
+  <SidebarLogo v-if="showSidebarLogo" :collapse="store.sidebar.opened" />
   <el-menu
     class="sidebar-container-menu"
     :default-active="defaultActive"
@@ -32,6 +33,7 @@ const defaultActive = computed(() => {
 
 const settingStore = useSettingStore()
 const theme = computed(() => settingStore.setting.theme)
+const showSidebarLogo = computed(() => settingStore.setting.showSidebarLogo)
 </script>
 
 <style scoped></style>

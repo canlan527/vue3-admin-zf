@@ -42,6 +42,7 @@ declare module 'vue' {
     SidebarExt: typeof import('./src/layouts/components/Sidebar/SidebarItemLink.vue')['default']
     SidebarItem: typeof import('./src/layouts/components/Sidebar/SidebarItem.vue')['default']
     SidebarItemLink: typeof import('./src/layouts/components/Sidebar/SidebarItemLink.vue')['default']
+    SidebarLogo: typeof import('./src/layouts/components/Sidebar/SidebarLogo.vue')['default']
     SizeSelect: typeof import('./src/components/SizeSelect/index.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
     TagsView: typeof import('./src/layouts/components/TagsView/index.vue')['default']
