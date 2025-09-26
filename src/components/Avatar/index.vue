@@ -23,9 +23,16 @@
 
 <script setup lang="ts">
 import avatar from '@/assets/avatar.png'
+import { useUserStore } from '@/stores/user'
+
+const store = useUserStore()
+// const router = useRouter()
+const { proxy } = getCurrentInstance()!
 
 const logout = () => {
-  console.log('退出登录')
+  store.logout()
+  proxy?.$message.success('退出成功')
+  // window.location.reload()
 }
 </script>
 

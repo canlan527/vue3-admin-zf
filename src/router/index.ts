@@ -21,6 +21,14 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/login/index.vue'),
+    meta: {
+      hidden: true // 侧边栏不要展示此页面
+    }
+  },
+  {
     //当跳转到/redirect/a/b/c/d?query=1
     path: '/redirect/:path(.*)',
     component: () => import('@/views/redirect/index.vue'),
@@ -112,7 +120,7 @@ const asyncRoutes: RouteRecordRaw[] = [
       {
         path: 'menu',
         name: 'System_menu',
-        component: () => import('@/views/system/menu.vue'),
+        component: () => import('@/views/system/menu/index.vue'),
         meta: {
           icon: 'ant-design:appstore-filled',
           title: 'Menu Management'
@@ -121,21 +129,19 @@ const asyncRoutes: RouteRecordRaw[] = [
       {
         path: 'role',
         name: 'System_role',
-        component: () => import('@/views/system/role.vue'),
+        component: () => import('@/views/system/role/index.vue'),
         meta: {
           icon: 'material-symbols:manage-accounts',
-          title: 'Role Management',
-          hidden: true
+          title: 'Role Management'
         }
       },
       {
         path: 'user',
         name: 'System_user',
-        component: () => import('@/views/system/user.vue'),
+        component: () => import('@/views/system/user/index.vue'),
         meta: {
           icon: 'material-symbols:account-circle',
-          title: 'User Management',
-          hidden: true
+          title: 'User Management'
         }
       }
     ]
