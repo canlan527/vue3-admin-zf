@@ -55,7 +55,7 @@ const outerHeight = computed(() => {
   }
 
   .main-container {
-    @apply flex flex-col flex-1;
+    @apply flex flex-col flex-1 overflow-hidden;
 
     .header {
       /* @apply h-[var(--header-height)]; */
@@ -64,7 +64,7 @@ const outerHeight = computed(() => {
       } */
     }
     .app-main {
-      @apply bg-cyan overflow-hidden pos-relative;
+      @apply overflow-hidden pos-relative;
       min-height: calc(100vh - v-bind(outerHeight));
     }
   }

@@ -80,6 +80,10 @@ const handleSizeChange = (val: number) => {
 const handleCurrentChange = (val: number) => {
   pageNum.value = val - 1
 }
+
+const handleRoleMenu = (row: IRole) => {
+  console.log(row)
+}
 </script>
 
 <style scoped></style>

@@ -32,9 +32,23 @@ export default defineConfig({
       // 解析组件
       resolvers: [ElementPlusResolver()],
       // 所有的组件可以自动加载
-      dirs: ['src/components', 'src/layouts/components']
+      dirs: [
+        'src/components',
+        'src/layouts/components',
+        'src/views/**/components'
+      ]
     }),
     // 导入ElementPlus样式
     ElementPlus({})
-  ]
+  ],
+  // 配置反向代理
+  server: {
+    proxy: {
+      '/dev-api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/dev-api/, '/api')
+      }
+    }
+  }
 })

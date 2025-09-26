@@ -4,6 +4,7 @@ import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import 'normalize.css'
 import element from './plugins/element'
+import './permission'
 import 'virtual:uno.css'
 import '@/assets/styles/index.scss'
 

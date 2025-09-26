@@ -8,6 +8,9 @@ export const useTagsView = defineStore('tagsView', () => {
   const visitedViews = ref<RouteLocationNormalizedLoadedGeneric[]>([])
   // 存储需要缓存的视图列表
   const cachedViews = ref<RouteRecordName[]>([])
+
+  const router = useRouter()
+
   // 添加视图到已访问视图列表和缓存列表中
   const addView = (view: RouteLocationNormalizedLoadedGeneric) => {
     const exits = visitedViews.value.some((v) => v.path === view.path)
@@ -48,8 +51,9 @@ export const useTagsView = defineStore('tagsView', () => {
   }
   // 删除所有非固定视图，并清空缓存视图列表
   const delAllView = () => {
-    visitedViews.value.filter((view) => view.meta.affix)
+    visitedViews.value = visitedViews.value.filter((view) => view.meta.affix)
     cachedViews.value = []
+    router.push('/')
   }
   // 删除指定视图外的所有视图，并保留指定视图的缓存
   const deleteOtherView = (view: RouteLocationNormalizedLoadedGeneric) => {

@@ -170,6 +170,9 @@ const handleCommand = (
     case CommandType.Refresh:
       deleteCachedView(view)
       // router.push('/redirect' + view.path)
+      // testLogin().then(res => {
+      //   console.log(res)
+      // })
       router.push({
         path: '/redirect' + view.fullPath
       })
