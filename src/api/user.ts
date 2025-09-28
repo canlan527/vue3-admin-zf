@@ -22,6 +22,20 @@ export interface IProfile {
   description: string
   roles: IRole[]
   roleIds?: number[] // 修改用户的时候，后端接收只要id
+  createdAt?: string
+}
+
+export interface IUsers {
+  users: IProfile[]
+  count: number
+}
+
+export interface IUserQuery {
+  pageNum?: number
+  pageSize?: number
+  mobile?: number
+  status?: number
+  username?: string
 }
 
 // 请求登录接口
@@ -34,4 +48,47 @@ export const login = (
 // 测试401
 export const testLogin = () => {
   return request.get('/auth/test')
+}
+
+// 获取用户信息
+export const getUserInfo = (): Promise<ApiResponse<IProfile>> => {
+  return request.post('/auth/info')
+}
+
+// 获取用户列表
+export const getUsers = (params: IUserQuery): Promise<ApiResponse<IUsers>> => {
+  const {
+    pageNum = 0,
+    pageSize = 10,
+    username = '',
+    status,
+    mobile = ''
+  } = params
+  return request.get('/user', {
+    params: {
+      pageNum,
+      pageSize,
+      status,
+      username,
+      mobile
+    }
+  })
+}
+
+// 添加用户
+export const addUser = (data: IProfile): Promise<ApiResponse> => {
+  return request.post('/auth/register', data)
+}
+
+// 修改用户
+export const updateUser = (
+  id: number,
+  data: IProfile
+): Promise<ApiResponse> => {
+  return request.put(`/user/${id}`, data)
+}
+
+// 删除用户
+export const removeUser = (id: number): Promise<ApiResponse> => {
+  return request.delete(`/user/${id}`)
 }

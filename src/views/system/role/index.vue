@@ -13,15 +13,15 @@
       />
       <el-table-column fixed="right" label="Operations" min-width="120">
         <template #default="scope">
-          <el-button link type="primary" @click="handleRoleMenu(scope.row)"
-            >菜单权限</el-button
-          >
-          <el-button link type="warning" @click="handleEditRole(scope.row)"
-            >修改</el-button
-          >
-          <el-button link type="danger" @click="handleRemove(scope.row)"
-            >删除</el-button
-          >
+          <el-button link type="primary" @click="handleRoleMenu(scope.row)">
+            菜单权限
+          </el-button>
+          <el-button link type="warning" @click="handleEditRole(scope.row)">
+            修改
+          </el-button>
+          <el-button link type="danger" @click="handleRemove(scope.row)">
+            删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>

@@ -5,6 +5,8 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "erasableSyntaxOnly": false
+    "erasableSyntaxOnly": false,
+    "esModuleInterop": true, // 允许导入非 ES 模块的包
+    "allowSyntheticDefaultImports": true // 允许从没有默认导出的模块使用默认导入
   }
 }
