@@ -15,6 +15,10 @@
           :props="defaultProps"
           :expand-on-click-node="false"
           @node-click="handleNodeClick"
+          draggable
+          :allow-drag="allowDrag"
+          :allow-drop="allowDrop"
+          @node-drop="handleDrop"
         >
           <template #default="{ node, data }">
             <span class="custom-tree-node">
@@ -59,6 +63,7 @@
 import type { IMenuData } from '@/api/menu'
 import { useReoladPage } from '@/hook/useReload'
 import { useMenuStore, type ITreeItemData } from '@/stores/menu'
+import type { AllowDropType, RenderContentContext } from 'element-plus'
 
 defineOptions({
   name: 'System_menu'
@@ -194,6 +199,27 @@ const handleUpdateEdit = async (data: Partial<IMenuData>) => {
     proxy?.$message.success('菜单编辑成功')
     reloadPage()
   }
+}
+
+// 拖拽
+
+type Node = RenderContentContext['node']
+// 拖拽一级节点
+// 判断节点能否被拖拽 如果返回 false ，节点不能被拖动
+const allowDrag = (draggingNode: Node) => {
+  const { data } = draggingNode
+  return data.parent_id === 0 || data.parent_id === null
+}
+// 拖拽时判定目标节点能否成为拖动目标位置。 如果返回 false ，拖动节点不能被拖放到目标节点。
+const allowDrop = (draggingNode: Node, dropNode: Node, type: AllowDropType) => {
+  const { data } = draggingNode
+  if (data.parent_id !== 0 || data.parent_id !== null) {
+    return type !== 'inner'
+  }
+}
+// 更新
+const handleDrop = () => {
+  menuStore.updateBulkMenu()
 }
 </script>
 

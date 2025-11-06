@@ -3,6 +3,7 @@ import {
   getAllMenus as getAllMenusApi,
   removeMenuById,
   updateMenuById,
+  updateBulkMenu as updateBulkMenuApi,
   type IMenuData
 } from '@/api/menu'
 import { generateTree } from '@/utils/generateTree'
@@ -60,11 +61,28 @@ export const useMenuStore = defineStore('menu', () => {
     }
   }
 
+  // 批量更新
+  const updateBulkMenu = async () => {
+    // 重置 sord_id
+    state.menuTreeData.forEach((item, index) => {
+      item.sort_id = index
+    })
+    // 删除children
+    const menuList = state.menuTreeData.map((item) => {
+      const temp = { ...item }
+      delete temp.children
+      return temp
+    })
+    // 批量更新
+    await updateBulkMenuApi(menuList)
+  }
+
   return {
     state,
     getAllMenuList,
     appendMenu,
     removeMenu,
-    updateMenu
+    updateMenu,
+    updateBulkMenu
   }
 })
