@@ -63,6 +63,7 @@
 import type { IMenuData } from '@/api/menu'
 import { useReoladPage } from '@/hook/useReload'
 import { useMenuStore, type ITreeItemData } from '@/stores/menu'
+// import { usePermissionStore } from '@/stores/permission'
 import type { AllowDropType, RenderContentContext } from 'element-plus'
 
 defineOptions({
@@ -75,10 +76,13 @@ const defaultProps = ref({
 })
 
 const menuStore = useMenuStore()
-const menus = computed(() => menuStore.state.menuTreeData)
+
+// const menus = computed(() => menuStore.state.menuTreeData)
+const menus = computed(() => menuStore.state.authMenuTreeData)
 
 onMounted(() => {
   menuStore.getAllMenuList()
+  // menuStore.getAccessByRoles()
 })
 
 // 添加菜单类型 0顶级 1子级
@@ -149,8 +153,9 @@ const allocChildMenu = (data: ITreeItemData, parentData: ITreeItemData) => {
     parentData.children = []
   }
   if (parentData.children.length > 0) {
-    sortId = getMenuNodeSortId(parentData.children)
+    sortId = getMenuNodeSortId(parentData.children as ITreeItemData[])
   }
+
   data.sort_id = sortId
   data.parent_id = pid
   return data
@@ -218,8 +223,24 @@ const allowDrop = (draggingNode: Node, dropNode: Node, type: AllowDropType) => {
   }
 }
 // 更新
-const handleDrop = () => {
-  menuStore.updateBulkMenu()
+// const permissionStore = usePermissionStore()
+const handleDrop = async () => {
+  menus.value.forEach((menu, index) => {
+    menu.sort_id = index
+  })
+  // 批量更新菜单状态，为了更新sord_id
+  const menuList = menus.value.map((menu) => {
+    const temp = { ...menu }
+    delete temp.children
+    return temp
+  })
+
+  const { code, message } = await menuStore.updateBulkMenu(menuList)
+  if (code === 0) {
+    proxy?.$message.success(message)
+    // permissionStore.generateRoutes(1) // 1代表菜单排序更新
+    reloadPage()
+  }
 }
 </script>
 

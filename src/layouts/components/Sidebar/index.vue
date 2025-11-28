@@ -10,10 +10,9 @@
     border-none
   >
     <SidebarItem
-      v-for="route in routes"
+      v-for="route in menuRoutes"
       :key="route.path"
       :item="route"
-      :base-path="route.path"
     ></SidebarItem>
   </el-menu>
 </template>
@@ -21,11 +20,16 @@
 <script setup lang="ts">
 import variables from '@/assets/styles/variables.module.scss'
 import { useAppstore } from '@/stores/app'
-import { routes } from '@/router'
+// import { routes } from '@/router'
 import { useSettingStore } from '@/stores/settings'
+import { useMenuStore } from '@/stores/menu'
+// import type { RouteRecordRaw } from 'vue-router'
 
 const route = useRoute()
 const store = useAppstore()
+const menuStore = useMenuStore()
+
+const menuRoutes = computed(() => menuStore.state.authMenuTreeData)
 
 const defaultActive = computed(() => {
   return route.path

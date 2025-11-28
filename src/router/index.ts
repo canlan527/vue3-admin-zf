@@ -51,7 +51,7 @@ export const constantRoutes: RouteRecordRaw[] = [
   // }
 ]
 
-const asyncRoutes: RouteRecordRaw[] = [
+export const asyncRoutes: RouteRecordRaw[] = [
   {
     path: '/xxx',
     component: Layout,
@@ -162,7 +162,9 @@ const asyncRoutes: RouteRecordRaw[] = [
   }
 ]
 
-export const routes: RouteRecordRaw[] = [...constantRoutes, ...asyncRoutes]
+// export const routes: RouteRecordRaw[] = [...constantRoutes, ...asyncRoutes]
+// 调整初始路由表，动态渲染异步路由表
+export const routes: RouteRecordRaw[] = constantRoutes
 
 export default createRouter({
   routes,

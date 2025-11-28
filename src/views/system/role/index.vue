@@ -34,10 +34,16 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
-    <!-- 弹出对话框 -->
-    <el-dialog :title="panelTitle" v-model="visibile" width="500" center>
+    <!-- 右侧抽屉框 -->
+    <right-panel :title="panelTitle" v-model="visibile">
       <editor-role :type="editType" :data="editData" @submit="handleSubmit" />
-    </el-dialog>
+    </right-panel>
+    <!-- 分配角色菜单弹出框 -->
+    <role-menu
+      v-if="roleMenuVisible && roleData"
+      :role="roleData"
+      v-model="roleMenuVisible"
+    ></role-menu>
   </div>
 </template>
 
@@ -51,7 +57,7 @@ defineOptions({
 
 const store = useRoleStore()
 const pageNum = ref(0)
-const pageSize = ref(1)
+const pageSize = ref(10)
 
 const {
   panelTitle,
@@ -80,9 +86,12 @@ const handleSizeChange = (val: number) => {
 const handleCurrentChange = (val: number) => {
   pageNum.value = val - 1
 }
-
+// 角色分配菜单权限
+const roleData = ref<IRole | null>(null)
+const roleMenuVisible = ref(false)
 const handleRoleMenu = (row: IRole) => {
-  console.log(row)
+  roleMenuVisible.value = true
+  roleData.value = row
 }
 </script>
 

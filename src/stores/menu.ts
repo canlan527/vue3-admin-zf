@@ -6,21 +6,27 @@ import {
   updateBulkMenu as updateBulkMenuApi,
   type IMenuData
 } from '@/api/menu'
-import { generateTree } from '@/utils/generateTree'
+import { getAccessByRoles as getRoleAccessByRolesApi } from '@/api/roleAccess'
+import { generateTree, type ITreeItemDataWithMeta } from '@/utils/generateTree'
+// import { usePermissionStore } from './permission'
 
 export interface ITreeItemData extends IMenuData {
-  children?: ITreeItemData[]
+  children?: Partial<ITreeItemDataWithMeta[]>
 }
 
 export interface IMenuState {
   menuList: Array<IMenuData> // 原始菜单列表数据
   menuTreeData: Array<ITreeItemData> // 树形菜单数据
+  authMenuList: Array<IMenuData>
+  authMenuTreeData: Array<ITreeItemDataWithMeta>
 }
 
 export const useMenuStore = defineStore('menu', () => {
   const state = reactive<IMenuState>({
-    menuList: [],
-    menuTreeData: []
+    menuList: [], // 菜单列表
+    menuTreeData: [], // 菜单树数据
+    authMenuList: [], // 权限菜单列表
+    authMenuTreeData: [] // 权限菜单树数据
   })
 
   // 获取所有菜单数据
@@ -62,19 +68,41 @@ export const useMenuStore = defineStore('menu', () => {
   }
 
   // 批量更新
-  const updateBulkMenu = async () => {
+  const updateBulkMenu = async (menuList: Array<IMenuData> = []) => {
     // 重置 sord_id
     state.menuTreeData.forEach((item, index) => {
       item.sort_id = index
     })
     // 删除children
-    const menuList = state.menuTreeData.map((item) => {
+    menuList = state.menuTreeData.map((item) => {
       const temp = { ...item }
       delete temp.children
       return temp
     })
     // 批量更新
-    await updateBulkMenuApi(menuList)
+    // const permissionStore = usePermissionStore()
+    // permissionStore.generateRoutes(1)
+    return await updateBulkMenuApi(menuList)
+  }
+
+  const getAllMenuListByAdmin = async () => {
+    const { code, data } = await getAllMenusApi()
+    if (code === 0) {
+      state.authMenuList = data
+      const treeData = generateTree([...data], true)
+      state.authMenuTreeData = treeData as ITreeItemDataWithMeta[]
+    }
+  }
+
+  const getAccessByRoles = async (roles: number[]) => {
+    const { code, data } = await getRoleAccessByRolesApi(roles)
+    if (code === 0) {
+      const { access } = data
+      state.authMenuList = [...access]
+      const treeData = generateTree([...access], true)
+      state.authMenuTreeData = treeData as ITreeItemDataWithMeta[]
+      return treeData
+    }
   }
 
   return {
@@ -83,6 +111,8 @@ export const useMenuStore = defineStore('menu', () => {
     appendMenu,
     removeMenu,
     updateMenu,
-    updateBulkMenu
+    updateBulkMenu,
+    getAllMenuListByAdmin,
+    getAccessByRoles
   }
 })

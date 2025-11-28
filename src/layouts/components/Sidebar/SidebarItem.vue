@@ -2,9 +2,9 @@
   <template v-if="!item.meta?.hidden">
     <sidebar-item-link
       v-if="filteredChildren.length <= 1 && !item.meta?.alwaysShow"
-      :to="resolvePath(singleChildRoute.path)"
+      :to="singleChildRoute.path"
     >
-      <el-menu-item :index="resolvePath(singleChildRoute.path)">
+      <el-menu-item :index="singleChildRoute.path">
         <el-icon v-if="iconName">
           <svg-icon :icon-name="iconName" />
         </el-icon>
@@ -25,7 +25,6 @@
         v-for="child of filteredChildren"
         :key="child.path"
         :item="child"
-        :base-path="resolvePath(child.path)"
       >
       </SidebarItem>
     </el-sub-menu>
@@ -33,13 +32,11 @@
 </template>
 
 <script setup lang="ts">
-import type { RouteRecordRaw } from 'vue-router'
-import path from 'path-browserify'
-import { isHttpLink } from '@/utils/validate'
+import type { ITreeItemDataWithMeta } from '@/utils/generateTree'
 
-const { item, basePath } = defineProps<{
-  item: RouteRecordRaw
-  basePath: string
+const { item } = defineProps<{
+  item: ITreeItemDataWithMeta
+  basePath?: string
 }>()
 
 // 如果item.children只有一条数据，直接渲染此children
@@ -51,22 +48,19 @@ const filteredChildren = computed(() =>
 
 // 要渲染的路由
 const singleChildRoute = computed(() =>
-  filteredChildren.value.length === 1
-    ? filteredChildren.value[0]
-    : { ...item, path: '' }
+  filteredChildren.value.length === 1 ? filteredChildren.value[0] : { ...item }
 )
-
 // 渲染的图标
 const iconName = computed(() => singleChildRoute.value.meta?.icon)
 
 // 解析和并且path路径
-const resolvePath = (childPath: string) => {
-  // 如果是外联直接返回路径，不做拼接操作
-  if (isHttpLink(childPath)) {
-    return childPath
-  }
-  return path.resolve(basePath, childPath)
-}
+// const resolvePath = (childPath: string) => {
+//   // 如果是外联直接返回路径，不做拼接操作
+//   if (isHttpLink(childPath)) {
+//     return childPath
+//   }
+//   // return path.resolve(basePath, childPath)
+// }
 </script>
 
 <style scoped></style>
